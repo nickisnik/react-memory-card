@@ -29,6 +29,7 @@ header span {
 }
 
 .card-container {
+  position: relative;
   width: 80%;
   margin: 4rem auto 3rem auto;
   row-gap: 0.7rem;
@@ -44,7 +45,7 @@ header span {
   height: 200px;
   display: flex;
   font-size: 45px;
-  user-select: none;
+  
   border: 2px solid rgba(13, 160, 197, 0.664);
   border-radius: 10px;
   box-shadow: -7px 0px 10px -5px rgba(0, 0, 0, 0.5);
@@ -53,6 +54,8 @@ header span {
 
 .card span {
   margin: auto;
+  user-select: none;
+  pointer-events: none;
 }
 
 .wrong {
@@ -76,6 +79,31 @@ header span {
   max-width: 400px;
   text-align: center;
   user-select: none;
+}
+
+.win-overlay {
+  position: absolute;
+  height: 200px;
+  width: 60%;
+  background-color: rgba(0, 0, 0, 0.116);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) scale(0.2);
+  color: white;
+  visibility: hidden;
+  display: flex;
+}
+
+.win-overlay span {
+  margin: auto;
+  font-size: 3rem;
+}
+
+.show {
+  transition: all 800ms;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+  background-color: rgba(0, 0, 0, 0.76);
 }
 
 @media (hover: hover) {
