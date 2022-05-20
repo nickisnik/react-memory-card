@@ -1,0 +1,30 @@
+.start-selector {
+    display: flex;
+    flex-direction: column;
+    margin: 15vh 0;
+    gap: 1rem;
+}
+
+.selector-option {
+    width: 600px;
+    margin: 0 auto;
+    background-color: rgb(13, 160, 197);
+    font-family: inherit;
+    font-weight: bold;
+    font-size: larger;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-radius: 10px;
+    transition-duration: 150ms;
+}
+
+.start-selector h1 {
+    margin: 0 auto 1.5rem auto;
+    color: rgb(82, 92, 92);
+}
+
+.selector-option:hover {
+    background-color: rgb(66, 92, 115);
+}

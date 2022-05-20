@@ -4,8 +4,8 @@ function Card(props) {
 
 
     return (
-        <div className={props.wrong ? 'card wrong' : 'card'} onClick={props.onClick}>
-            <span>{props.name}</span>
+        <div id={props.id} style={{backgroundImage: `url(${props.image})`}} className={props.wrong ? 'card wrong' : 'card'} onClick={props.onClick}>
+           
         </div>
     );
 }

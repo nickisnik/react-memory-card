@@ -1,18 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
-import Card from './components/Card'
+import Card from './components/Card';
+import CardContainer from './components/CardContainer';
+import StartSelector from './components/StartSelector';
 
 // NEED TO ADD INDIVIDUAL KEYS TO CARD ARRAY
 
 function App() {
 
-  const [cardList, setCardList] = useState(['A', 'O', 'U', 'F', 'E', 'Y', 'B', 'I']);
+  const [cardList, setCardList] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
   const [usedCards, setUsedCards] = useState([]);
   const [score, setScore] = useState(0);
   const [lastScore, setLastScore] = useState(0);
   const [wrongCard, setWrongCard] = useState('');
   const [winAnnounce, setWinAnnounce] = useState(false);
+  const [start, setStart] = useState(false);
+
+  const [cardImages, setCardImages] = useState([]);
+
+  const topic = 'white+husky'
 
   function shuffle() {
     const cardArray = [...cardList];
@@ -33,7 +40,7 @@ function App() {
     shuffle()
   }
   function handleClick(e) {
-    const cardTarget = e.target.querySelector('span').textContent;
+    const cardTarget = parseInt(e.target.id);
     if (usedCards.indexOf(cardTarget) >= 0) {
       setWrongCard(cardTarget)
       setTimeout(gameOver, 1000)
@@ -45,8 +52,10 @@ function App() {
     shuffle()
   }
 
+
   useEffect(() => {
     // ON PAGE LOAD
+   /*  fetchPhotos() */
     shuffle();
   }, [])
 
@@ -56,34 +65,37 @@ function App() {
       setTimeout(gameOver, 1500);
     }
   }, [score]);
+
+  
   
   // useEffect(() => {
   //   shuffle()
   // }, [score])
 
   
-  const cards = cardList.map((item, index) => {
-    let wrong = false;
-    if(wrongCard === item) {
-      wrong = true;
-    } 
-    return <Card name={cardList[index]} wrong={wrong} onClick={handleClick}/>
-  })
+  
 
   return (
     <div className="App">
       <header>
         <span>Memory Card</span>
       </header>
-      <section className='card-container'>
-        {cards}
-        <div className={winAnnounce ? 'win-overlay show' : 'win-overlay'}>
-          <span>You win!</span>
-        </div>
-      </section>
+
+      {start && <StartSelector/>}
+
+      {!start && <CardContainer cardList={cardList}
+                               wrongCard={wrongCard}
+                               cardImages={cardImages}
+                               setCardImages={setCardImages}
+                               handleClick={handleClick}
+                               winAnnounce={winAnnounce}
+                               topic={topic}
+                              />}
+
       <div className='scores'>
         <span>Current score: {score}</span>
         <span>Last score: {lastScore}</span>
+        <button onClick={() => {setStart((oldValue) => !oldValue)}}>Home</button>
       </div>
     </div>
   );
