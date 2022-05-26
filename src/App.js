@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
-import Card from './components/Card';
 import CardContainer from './components/CardContainer';
 import StartSelector from './components/StartSelector';
 
@@ -17,9 +15,18 @@ function App() {
   const [winAnnounce, setWinAnnounce] = useState(false);
   const [start, setStart] = useState(true);
 
+
+
   const [cardImages, setCardImages] = useState([]);
 
-  const [topic, setTopic] = useState('white+husky')
+  const [topic, setTopic] = useState('white+husky');
+
+  useEffect(() => {
+    if(start === true) {
+      setUsedCards([]);
+      setScore(0);
+    }
+  }, [start])
 
   function shuffle() {
     const cardArray = [...cardList];
