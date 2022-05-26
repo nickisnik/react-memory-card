@@ -15,11 +15,11 @@ function App() {
   const [lastScore, setLastScore] = useState(0);
   const [wrongCard, setWrongCard] = useState('');
   const [winAnnounce, setWinAnnounce] = useState(false);
-  const [start, setStart] = useState(false);
+  const [start, setStart] = useState(true);
 
   const [cardImages, setCardImages] = useState([]);
 
-  const topic = 'white+husky'
+  const [topic, setTopic] = useState('white+husky')
 
   function shuffle() {
     const cardArray = [...cardList];
@@ -81,7 +81,11 @@ function App() {
         <span>Memory Card</span>
       </header>
 
-      {start && <StartSelector/>}
+      {start && <StartSelector topic={topic}
+                               setTopic={setTopic}
+                               setStart={setStart}
+                               cardImages={cardImages}
+                               setCardImages={setCardImages}/>}
 
       {!start && <CardContainer cardList={cardList}
                                wrongCard={wrongCard}
@@ -92,11 +96,13 @@ function App() {
                                topic={topic}
                               />}
 
-      <div className='scores'>
+      {!start && <div className='scores'>
+        <button onClick={() => {setStart(true); setCardImages([])}}>Back</button>
         <span>Current score: {score}</span>
         <span>Last score: {lastScore}</span>
-        <button onClick={() => {setStart((oldValue) => !oldValue)}}>Home</button>
-      </div>
+
+      </div>}
+
     </div>
   );
 }

@@ -1,7 +1,7 @@
 .start-selector {
     display: flex;
     flex-direction: column;
-    margin: 15vh 0;
+    margin: 12vh 0 25vh 0;
     gap: 1rem;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .start-selector h1 {
-    margin: 0 auto 1.5rem auto;
+    margin: 0 auto 1rem auto;
     color: rgb(82, 92, 92);
 }
 
